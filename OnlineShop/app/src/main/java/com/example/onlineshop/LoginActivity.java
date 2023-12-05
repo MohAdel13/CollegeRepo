@@ -13,6 +13,8 @@ import com.example.onlineshop.databinding.ActivityLoginBinding;
 import com.example.onlineshop.pojo.UserDB;
 import com.example.onlineshop.pojo.UserModel;
 
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
     UserDB userDB;
     ActivityLoginBinding binding;
@@ -24,9 +26,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         userDB = UserDB.getInstance(getApplicationContext());
-        if(!userDB.userDao().checkIsRemembered().isEmpty())
+        List<UserModel> reUser = userDB.userDao().checkIsRemembered();
+        if(!reUser.isEmpty())
         {
             Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
+            intent.putExtra("category", reUser.get(0).favCategory);
             startActivity(intent);
         }
         else {
@@ -49,26 +53,21 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please Enter Valid Data", Toast.LENGTH_LONG).show();
                     } else {
                         userDB = UserDB.getInstance(getApplicationContext());
-                        if (!userDB.userDao().getUser(user, pass).isEmpty()) {
-                            Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
-                            startActivity(intent);
+                        List<UserModel> us = userDB.userDao().getUser(user, pass);
+                        if (!us.isEmpty()) {
 
                             if (binding.rememberCB.isChecked()) {
                                 userDB.userDao().logout();
                                 userDB.userDao().updateIsRemembered(true, user);
                             }
+
+                            Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
+                            intent.putExtra("category",us.get(0).favCategory);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(getApplicationContext(), "Please Enter Correct Data", Toast.LENGTH_LONG).show();
                         }
                     }
-                }
-            });
-
-            binding.forgetTV.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @SuppressLint("ResourceAsColor")
-                @Override
-                public void onFocusChange(View view, boolean b) {
-                    binding.forgetTV.setTextColor(R.color.orange);
                 }
             });
 

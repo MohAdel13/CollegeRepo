@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#00FAF6F6"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
@@ -12,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        app:cardBackgroundColor="#CDF08000"
+        app:cardBackgroundColor="#6AFFFFFF"
         app:cardCornerRadius="30dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
@@ -42,7 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeColor="@color/orangeSecondary"
-                app:strokeWidth="0.5dp">
+                app:strokeWidth="0dp">
 
                 <ImageView
                     android:id="@+id/productIV"
@@ -80,7 +81,6 @@
                 android:layout_marginTop="5dp"
                 android:paddingBottom="40dp"
                 android:text="@string/price"
-                android:textColor="#FF000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/prodTitleTV"
@@ -94,7 +94,6 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/rate"
-                android:textColor="#000000"
                 app:drawableEndCompat="@drawable/baseline_star_rate_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

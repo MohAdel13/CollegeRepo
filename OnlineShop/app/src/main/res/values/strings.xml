@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">OnlineShop</string>
     <string name="username">Username</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome">Welcome,</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="remember_me">Remember Me</string>
     <string name="forgetten_password">Forgetten Password</string>
-    <string name="already_have_account">Already Have Account</string>
+    <string name="already_have_account">Already have an account</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="reset_password">Reset Password</string>
     <string name="enter_your_birthday">Enter Your BirthDay:</string>

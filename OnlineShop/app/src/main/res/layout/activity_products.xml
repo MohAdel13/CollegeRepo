@@ -4,8 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/products_background"
+    android:background="@color/white"
     tools:context=".ProductsActivity">
+
+    <ImageView
+        android:id="@+id/productsBackIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:tint="#4FFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/background_svg"
+        android:importantForAccessibility="no"
+        tools:ignore="UseAppTint" />
 
     <SearchView
         android:id="@+id/search"
@@ -13,9 +26,10 @@
         android:layout_height="50dp"
         android:iconifiedByDefault="false"
         android:queryHint="Search"
+        android:searchIcon="@drawable/baseline_search_24"
         app:layout_constraintEnd_toStartOf="@+id/ProductCardBTN"
         app:layout_constraintStart_toEndOf="@+id/productMenuBTN"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </SearchView>
 
@@ -28,11 +42,12 @@
         android:layout_weight="1"
         android:background="@null"
         android:importantForAccessibility="no"
+        android:tint="@color/orange"
         app:layout_constraintBottom_toBottomOf="@+id/productVoiceBTN"
         app:layout_constraintEnd_toStartOf="@+id/productVoiceBTN"
         app:layout_constraintTop_toTopOf="@+id/productVoiceBTN"
         app:srcCompat="@drawable/barcode"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="ImageContrastCheck,TouchTargetSizeCheck,UseAppTint" />
 
     <ImageButton
         android:id="@+id/productVoiceBTN"
@@ -40,12 +55,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@null"
+        android:importantForAccessibility="no"
         android:src="@drawable/baseline_keyboard_voice_24"
+        android:tint="@color/orange"
         app:layout_constraintBottom_toBottomOf="@+id/search"
         app:layout_constraintEnd_toEndOf="@+id/search"
         app:layout_constraintTop_toTopOf="@+id/search"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-        android:importantForAccessibility="no" />
+        tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,UseAppTint" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productsRV"
@@ -55,6 +71,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="30dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,10 +98,11 @@
         android:layout_marginTop="10dp"
         android:background="@null"
         android:importantForAccessibility="no"
+        android:tint="@color/orangeSecondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_menu_24"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,UseAppTint" />
 
     <ImageButton
         android:id="@+id/ProductCardBTN"
@@ -93,9 +112,10 @@
         android:layout_marginEnd="10dp"
         android:background="@null"
         android:importantForAccessibility="no"
+        android:tint="@color/orangeSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_shopping_cart_24"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,UseAppTint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

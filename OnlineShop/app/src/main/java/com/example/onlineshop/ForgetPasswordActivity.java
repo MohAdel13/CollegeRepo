@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.example.onlineshop.databinding.ActivityForgetPasswordBinding;
 import com.example.onlineshop.pojo.UserDB;
 
+import java.util.Random;
+
 public class ForgetPasswordActivity extends AppCompatActivity {
     ActivityForgetPasswordBinding binding;
     UserDB userDB;
