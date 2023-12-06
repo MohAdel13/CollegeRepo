@@ -18,4 +18,12 @@
     <string name="price">Price</string>
     <string name="name">Name</string>
     <string name="rate">Rate</string>
+    <string name="cart">Cart</string>
+    <string name="products">Products</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="electronics">electronics</string>
+    <string name="jewelery">jewelery</string>
+    <string name="mensclothing">men\'s clothing</string>
+    <string name="womensclothing">women\'s clothing</string>
 </resources>

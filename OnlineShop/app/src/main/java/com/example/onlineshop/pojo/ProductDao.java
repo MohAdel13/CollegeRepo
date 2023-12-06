@@ -18,4 +18,10 @@ public interface ProductDao {
 
     @Delete
     void deleteProduct(ProductModel Product);
+
+    @Query("SELECT * FROM PRODUCT_TABLE WHERE category =:category")
+    List<ProductModel> getProductsByCategory(String category);
+
+    @Query("SELECT DISTINCT category FROM PRODUCT_TABLE")
+    String[] getAllCategories();
 }

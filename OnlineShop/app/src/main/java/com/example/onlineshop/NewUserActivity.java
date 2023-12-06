@@ -13,10 +13,8 @@ import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityNewUserBinding;
 import com.example.onlineshop.pojo.ProductClient;
-import com.example.onlineshop.pojo.ProductModel;
+import com.example.onlineshop.pojo.ProductDB;
 import com.example.onlineshop.pojo.UserDB;
-
-import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -32,6 +30,8 @@ public class NewUserActivity extends AppCompatActivity {
     String selectedItem = null;
     ArrayAdapter<String> adapter;
 
+    ProductDB productDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,31 +42,48 @@ public class NewUserActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String user = intent.getStringExtra("user");
 
-        Single<String[]> cat = ProductClient.getINSTANCE().productInterface.getAllCategories()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        productDB = ProductDB.getInstance(getApplicationContext());
 
-        cat.subscribe(new SingleObserver<String[]>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                binding.progressBar2.setVisibility(View.VISIBLE);
-            }
+        // in case of first run to get data from API (Don't look at it, you will lose your mind)
+        if(productDB.productDao().getAllProducts().isEmpty()) {
+            Single<String[]> cat = ProductClient.getINSTANCE().productInterface.getAllCategories()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
 
-            @Override
-            public void onSuccess(@NonNull String[] cats) {
-                categories = cats;
-                adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, categories);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                binding.catSpinner.setAdapter(adapter);
-                binding.progressBar2.setVisibility(View.INVISIBLE);
-            }
+            cat.subscribe(new SingleObserver<String[]>() {
+                @Override
+                public void onSubscribe(@NonNull Disposable d) {
+                    binding.progressBar2.setVisibility(View.VISIBLE);
+                }
 
-            @Override
-            public void onError(@NonNull Throwable e) {
-                binding.progressBar2.setVisibility(View.INVISIBLE);
-                Toast.makeText(getApplicationContext(),"You Are Offline...", Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onSuccess(@NonNull String[] cats) {
+                    categories = cats;
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_spinner_dropdown_item, R.id.text1, categories);
+                    binding.catSpinner.setAdapter(adapter);
+                    binding.progressBar2.setVisibility(View.INVISIBLE);
+                }
+
+                @Override
+                public void onError(@NonNull Throwable e) {
+                    binding.progressBar2.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getApplicationContext(), "You Are Offline...", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
+        // in case of another runs after saving the data to the database
+        //TODO "This case is the required case for the project"
+        else {
+            categories = productDB.productDao().getAllCategories();
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_spinner_dropdown_item, R.id.text1, categories);
+            binding.catSpinner.setAdapter(adapter);
+
+            binding.progressBar2.setVisibility(View.INVISIBLE);
+
+            Toast.makeText(this, "From Database", Toast.LENGTH_SHORT).show();
+        }
 
 
         binding.usernameTV.setText(user);

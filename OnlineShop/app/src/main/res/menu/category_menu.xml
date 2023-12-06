@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/electronics"
+        android:title="@string/electronics"/>
+    <item
+        android:id="@+id/mensclothing"
+        android:title="@string/mensclothing"/>
+    <item
+        android:id="@+id/womensclothing"
+        android:title="@string/womensclothing"/>
+    <item
+        android:id="@+id/jewelery"
+        android:title="@string/jewelery"/>
+</menu>
