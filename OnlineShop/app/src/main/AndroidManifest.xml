@@ -16,14 +16,29 @@
         android:theme="@style/Theme.OnlineShop"
         tools:targetApi="31">
         <activity
+            android:name=".OrderSubmitActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".SingleProductActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".CartActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
             android:name=".NewUserActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ForgetPasswordActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,11 +47,12 @@
         </activity>
         <activity
             android:name=".ProductsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".RegisterActivity"
-            android:exported="true" />
-
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.onlineshop;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,27 +16,30 @@ import com.example.onlineshop.pojo.ProductModel;
 
 import java.util.List;
 
-public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>{
-    List<ProductModel> products;
-    Context context;
-    ProductItemBinding binding;
-    ProductDB db;
+public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductViewHolder> {
+    private List<ProductModel> products;
+    private Context context;
+    private ProductDB db;
+    private String user;
 
-    ProductsAdapter(Context context)
-    {
+    ProductsAdapter(Context context, String user) {
         this.context = context;
         db = ProductDB.getInstance(context);
+        this.user = user;
     }
 
     @NonNull
     @Override
-    public ProductsAdapter.ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        binding = ProductItemBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        ProductItemBinding binding = ProductItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ProductViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductsAdapter.ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        ProductItemBinding binding = holder.binding;
+
         Glide.with(context).load(products.get(position).image).into(binding.productIV);
         binding.priceTV.setText("USD " + Float.toString(products.get(position).price));
         binding.prodTitleTV.setText(products.get(position).title);
@@ -44,19 +48,29 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return products == null ? 0 : products.size();
     }
 
-    public void setProducts(List<ProductModel> products)
-    {
+    public void setProducts(List<ProductModel> products) {
         this.products = products;
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         ProductItemBinding binding;
+
         public ProductViewHolder(@NonNull ProductItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+
+            binding.prodItemCV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), SingleProductActivity.class);
+                    intent.putExtra("product", products.get(getAdapterPosition()).title);
+                    intent.putExtra("user", user);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

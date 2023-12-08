@@ -9,6 +9,7 @@
     android:paddingBottom="10dp">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/prodItemCV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"
@@ -43,7 +44,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeColor="@color/orangeSecondary"
-                app:strokeWidth="0dp">
+                app:strokeWidth="0dp"
+                tools:ignore="VisualLintBounds">
 
                 <ImageView
                     android:id="@+id/productIV"

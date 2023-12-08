@@ -24,4 +24,7 @@ public interface ProductDao {
 
     @Query("SELECT DISTINCT category FROM PRODUCT_TABLE")
     String[] getAllCategories();
+
+    @Query("Select * From PRODUCT_TABLE Where title =:title")
+    List<ProductModel> getProduct(String title);
 }

@@ -21,7 +21,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:backgroundTint="@color/white">
 
             <ImageView
                 android:id="@+id/regIconIV"
@@ -41,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/register"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +76,7 @@
                 android:hint="@string/email"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
+                android:textColorHint="@color/drawableGrey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/regIconIV"
@@ -91,12 +95,13 @@
                 android:drawableTint="@color/drawableGrey"
                 android:ems="10"
                 android:hint="@string/username"
+                android:importantForAutofill="no"
                 android:inputType="text"
+                android:textColorHint="@color/drawableGrey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/regEmailET"
-                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize"
-                android:importantForAutofill="no" />
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
             <EditText
                 android:id="@+id/regPassET"
@@ -111,12 +116,13 @@
                 android:drawableTint="@color/drawableGrey"
                 android:ems="10"
                 android:hint="@string/password"
+                android:importantForAutofill="no"
                 android:inputType="textPassword"
+                android:textColorHint="@color/drawableGrey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/regUserET"
-                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize"
-                android:importantForAutofill="no" />
+                tools:ignore="TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

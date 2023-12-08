@@ -12,9 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityNewUserBinding;
+import com.example.onlineshop.pojo.CategoryDB;
+import com.example.onlineshop.pojo.CategoryModel;
 import com.example.onlineshop.pojo.ProductClient;
 import com.example.onlineshop.pojo.ProductDB;
 import com.example.onlineshop.pojo.UserDB;
+
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -31,6 +35,8 @@ public class NewUserActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
     ProductDB productDB;
+    CategoryDB categoryDB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +49,10 @@ public class NewUserActivity extends AppCompatActivity {
         String user = intent.getStringExtra("user");
 
         productDB = ProductDB.getInstance(getApplicationContext());
+        categoryDB = CategoryDB.getInstance(getApplicationContext());
 
         // in case of first run to get data from API (Don't look at it, you will lose your mind)
-        if(productDB.productDao().getAllProducts().isEmpty()) {
+        if(categoryDB.categoryDao().getAllCategories().isEmpty()) {
             Single<String[]> cat = ProductClient.getINSTANCE().productInterface.getAllCategories()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread());
@@ -58,6 +65,13 @@ public class NewUserActivity extends AppCompatActivity {
 
                 @Override
                 public void onSuccess(@NonNull String[] cats) {
+                    CategoryModel category;
+                    for(int i=0; i<cats.length;i++)
+                    {
+                        category  = new CategoryModel();
+                        category.name = cats[i];
+                        categoryDB.categoryDao().insertCategory(category);
+                    }
                     categories = cats;
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_spinner_dropdown_item, R.id.text1, categories);
                     binding.catSpinner.setAdapter(adapter);
@@ -75,14 +89,18 @@ public class NewUserActivity extends AppCompatActivity {
         // in case of another runs after saving the data to the database
         //TODO "This case is the required case for the project"
         else {
-            categories = productDB.productDao().getAllCategories();
+            List<CategoryModel> cats = categoryDB.categoryDao().getAllCategories();
+
+            categories = cats.stream()
+                    .map(CategoryModel::getName)
+                    .toArray(String[]::new);
 
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.custom_spinner_dropdown_item, R.id.text1, categories);
             binding.catSpinner.setAdapter(adapter);
 
             binding.progressBar2.setVisibility(View.INVISIBLE);
 
-            Toast.makeText(this, "From Database", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "From Database", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -119,7 +137,9 @@ public class NewUserActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(),ProductsActivity.class);
                     intent.putExtra("category", selectedItem);
+                    intent.putExtra("user", user);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

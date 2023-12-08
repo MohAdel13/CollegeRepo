@@ -29,6 +29,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -59,6 +60,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Password is Changed",Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
+                        finish();
                     }
 
                 }
@@ -70,6 +72,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

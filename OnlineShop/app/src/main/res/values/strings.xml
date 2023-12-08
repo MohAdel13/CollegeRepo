@@ -26,4 +26,22 @@
     <string name="jewelery">jewelery</string>
     <string name="mensclothing">men\'s clothing</string>
     <string name="womensclothing">women\'s clothing</string>
+    <string name="_0">0</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="description">Description</string>
+    <string name="todo">TODO</string>
+    <string name="_1">1</string>
+    <string name="remove">Remove</string>
+    <string name="happy_birthday">Happy BirthDay ;-)</string>
+    <string name="cash_on_delivery">Cash on Delivery</string>
+    <string name="checkout">Checkout</string>
+    <string name="delivery">Delivery</string>
+    <string name="submit_order">Submit Order</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="total">Total</string>
+    <string name="order_total">Order Total</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="total_pay">Total Pay</string>
+    <string name="total_to_pay">Total to Pay</string>
 </resources>

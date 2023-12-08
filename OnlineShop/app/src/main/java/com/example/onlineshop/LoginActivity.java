@@ -31,7 +31,9 @@ public class LoginActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
             intent.putExtra("category", reUser.get(0).favCategory);
+            intent.putExtra("user", reUser.get(0).username);
             startActivity(intent);
+            finish();
         }
         else {
 
@@ -63,7 +65,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
                             intent.putExtra("category",us.get(0).favCategory);
+                            intent.putExtra("user", us.get(0).username);
                             startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Please Enter Correct Data", Toast.LENGTH_LONG).show();
                         }
@@ -76,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
         }

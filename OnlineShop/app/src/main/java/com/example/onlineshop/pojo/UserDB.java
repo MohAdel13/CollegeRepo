@@ -5,8 +5,10 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
-@Database(entities = UserModel.class,version = 5,exportSchema = false)
+@Database(entities = UserModel.class,version = 11,exportSchema = false)
+@TypeConverters({ProductModelConverter.class, RatingConverter.class})
 public abstract class UserDB extends RoomDatabase {
     private static UserDB INSTANCE;
     public abstract UserDao userDao();

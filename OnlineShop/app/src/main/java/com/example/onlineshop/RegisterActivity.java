@@ -9,8 +9,15 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityRegisterBinding;
+import com.example.onlineshop.pojo.CartProductModel;
+import com.example.onlineshop.pojo.ProductModel;
 import com.example.onlineshop.pojo.UserDB;
 import com.example.onlineshop.pojo.UserModel;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -27,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         binding.registerBTN.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +57,13 @@ public class RegisterActivity extends AppCompatActivity {
                         us.email = email;
                         us.password = pass;
                         us.username = user;
+                        us.cartItems = new ArrayList<>();
+                        us.productsNames = new ArrayList<>();
                         userDB.userDao().insertUser(us);
                         Intent intent = new Intent(getApplicationContext(), NewUserActivity.class);
                         intent.putExtra("user",user);
                         startActivity(intent);
+                        finish();
                     }
                     else {
                         Toast.makeText(getApplicationContext(),"Email or Username is already used",Toast.LENGTH_LONG).show();

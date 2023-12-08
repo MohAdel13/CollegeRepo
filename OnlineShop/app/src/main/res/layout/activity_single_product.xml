@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".SingleProductActivity">
+
+    <ImageView
+        android:id="@+id/productBgIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:importantForAccessibility="no"
+        android:tint="#B7FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/background_svg"
+        tools:ignore="ImageContrastCheck,UseAppTint" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/countTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productImageIV">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:backgroundTint="#00FFFFFF">
+
+            <TextView
+                android:id="@+id/productNameTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/name"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/productPriceTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/price"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.489"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productCatTV" />
+
+            <TextView
+                android:id="@+id/productCatTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/category"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.388"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productNameTV" />
+
+            <TextView
+                android:id="@+id/productDesTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productPriceTV" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/productImageIV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:contentDescription="@string/todo"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck,VisualLintBounds"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/minusTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="@string/minus"
+        android:textColor="@color/orangeSecondary"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/countTV"
+        app:layout_constraintEnd_toStartOf="@+id/countTV"
+        app:layout_constraintTop_toTopOf="@+id/countTV"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/countTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/_0"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/addToCartBTN"
+        app:layout_constraintEnd_toEndOf="@+id/addToCartBTN"
+        app:layout_constraintStart_toStartOf="@+id/addToCartBTN" />
+
+    <TextView
+        android:id="@+id/plusTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/plus"
+        android:textColor="@color/orangeSecondary"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/countTV"
+        app:layout_constraintStart_toEndOf="@+id/countTV"
+        app:layout_constraintTop_toTopOf="@+id/countTV"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/addToCartBTN"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:paddingBottom="10dp"
+        android:text="Add to cart"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText,TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

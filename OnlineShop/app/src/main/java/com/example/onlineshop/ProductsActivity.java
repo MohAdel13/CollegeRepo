@@ -3,18 +3,18 @@ package com.example.onlineshop;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.hardware.biometrics.BiometricManager;
-import android.icu.text.SimpleDateFormat;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -22,19 +22,20 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityProductsBinding;
+import com.example.onlineshop.pojo.CategoryDB;
+import com.example.onlineshop.pojo.CategoryModel;
 import com.example.onlineshop.pojo.ProductClient;
 import com.example.onlineshop.pojo.ProductDB;
 import com.example.onlineshop.pojo.ProductModel;
-import com.example.onlineshop.pojo.ProductSearchAdapter;
 import com.example.onlineshop.pojo.UserDB;
 import com.journeyapps.barcodescanner.CaptureActivity;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,6 +58,10 @@ public class ProductsActivity extends AppCompatActivity {
 
     String cat;
 
+    String user;
+
+    CategoryDB categoryDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +70,48 @@ public class ProductsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
+        user = intent.getStringExtra("user");
 
-        adapter = new ProductsAdapter(getApplicationContext());
+        adapter = new ProductsAdapter(getApplicationContext(),user);
 
         productDB = ProductDB.getInstance(getApplicationContext());
 
         productsList = new ArrayList<>();
+
+        userDB = UserDB.getInstance(getApplicationContext());
+        categoryDB = CategoryDB.getInstance(getApplicationContext());
+
+        String userBirthDate = userDB.userDao().checkUser(user).get(0).birthDate;
+        if(userBirthDate != null)
+        {
+            String[] userBirth = userBirthDate.split(" / ");
+
+            int[] today = new int[3];
+            Calendar c = Calendar.getInstance();
+            today[0] = c.get(Calendar.DAY_OF_MONTH);
+            today[1] = c.get(Calendar.MONTH) + 1;
+            today[2] = c.get(Calendar.YEAR);
+
+            int i = 0;
+            for(;i<3;i++)
+            {
+                if(today[i] != Integer.parseInt(userBirth[i]))
+                {
+                    break;
+                }
+            }
+            if(i == 3)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+                LayoutInflater inflater = getLayoutInflater();
+
+                View dialogLayout = inflater.inflate(R.layout.dialogue_layout,null);
+
+                builder.setView(dialogLayout);
+                builder.setTitle("Hey There");
+                builder.show();
+            }
+        }
 
         // in case of first run to get data from API (Don't look at it, you will lose your mind)
         if (productDB.productDao().getAllProducts().isEmpty()) {
@@ -90,7 +131,7 @@ public class ProductsActivity extends AppCompatActivity {
                     for (int i = 0; i < prod.size(); i++) {
                         productDB.productDao().insertProduct(prod.get(i));
                     }
-                    Toast.makeText(ProductsActivity.this, "done.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ProductsActivity.this, "done.", Toast.LENGTH_SHORT).show();
                     new getList().execute();
                     new getCategories().execute();
 
@@ -109,6 +150,7 @@ public class ProductsActivity extends AppCompatActivity {
         //TODO "This case is the required case for the project"
         else {
             binding.progressBar.setVisibility(View.INVISIBLE);
+
             new getList().execute();
             new getCategories().execute();
             //Toast.makeText(this, "From Database", Toast.LENGTH_SHORT).show();
@@ -154,6 +196,15 @@ public class ProductsActivity extends AppCompatActivity {
                 adapter.setProducts(productSearchAdapter.filteredProductList);
                 adapter.notifyDataSetChanged();
                 return false;
+            }
+        });
+
+        binding.productsCartBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
             }
         });
     }
@@ -225,30 +276,43 @@ public class ProductsActivity extends AppCompatActivity {
 
         @Override
         protected String[] doInBackground(Void... voids) {
-            categories = productDB.productDao().getAllCategories();
+            if(categoryDB.categoryDao().getAllCategories().isEmpty())
+            {
+                categories = productDB.productDao().getAllCategories();
+            }
+
+            else {
+                List<CategoryModel> cats = categoryDB.categoryDao().getAllCategories();
+
+                categories = cats.stream()
+                        .map(CategoryModel::getName)
+                        .toArray(String[]::new);
+            }
             return categories;
         }
 
         @Override
         protected void onPostExecute(String[] strings) {
             super.onPostExecute(strings);
+
             binding.productFilterBTN.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     PopupMenu popup = new PopupMenu(getApplicationContext(), binding.productFilterBTN, 0, 0, R.style.AppTheme_PopupMenu);
-                    popup.getMenuInflater().inflate(R.menu.category_menu, popup.getMenu());
+                    for (int i = 0; i < strings.length; i++) {
+                        popup.getMenu().add(Menu.NONE, i, Menu.NONE, strings[i]);
+                    }
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
                             productsList.clear();
                             productsList = productDB.productDao().getProductsByCategory(menuItem.getTitle().toString());
-                            adapter = new ProductsAdapter(getApplicationContext());
+                            adapter = new ProductsAdapter(getApplicationContext(), user);
                             adapter.setProducts(productsList);
                             binding.productsRV.setAdapter(adapter);
                             return true;
                         }
                     });
-
                         popup.show();
                 }
             });

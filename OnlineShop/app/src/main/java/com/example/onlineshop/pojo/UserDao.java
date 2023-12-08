@@ -5,8 +5,10 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
+import java.util.Map;
 
 @Dao
 public interface UserDao {
@@ -45,4 +47,7 @@ public interface UserDao {
 
     @Query("Update USER_TABLE SET favCategory =:cat WHERE username =:username")
     void updateCat(String cat,String username);
+
+    @Update
+    void updateCart(UserModel user);
 }

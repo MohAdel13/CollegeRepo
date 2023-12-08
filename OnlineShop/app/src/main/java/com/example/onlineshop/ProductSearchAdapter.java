@@ -1,10 +1,12 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop;
 
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.example.onlineshop.pojo.ProductModel;
 
 import java.util.ArrayList;
 import java.util.List;
