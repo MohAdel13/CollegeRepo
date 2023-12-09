@@ -11,7 +11,7 @@
     </style>
 
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:background">#FFFFFFFF</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="AppTheme.PopupMenu" parent="@style/Widget.AppCompat.PopupMenu">

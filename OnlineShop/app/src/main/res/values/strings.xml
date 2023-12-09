@@ -44,4 +44,11 @@
     <string name="payment_method">Payment Method</string>
     <string name="total_pay">Total Pay</string>
     <string name="total_to_pay">Total to Pay</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="change_password">Change Password</string>
+    <string name="favourite_category">Favourite Category</string>
+    <string name="your_information">Your Information</string>
+    <string name="remove_account">Remove Account</string>
+    <string name="save">Save</string>
+    <string name="security">Security</string>
 </resources>

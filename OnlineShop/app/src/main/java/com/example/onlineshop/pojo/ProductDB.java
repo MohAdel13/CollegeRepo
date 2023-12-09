@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = ProductModel.class,version = 6,exportSchema = false)
+@Database(entities = ProductModel.class,version = 8,exportSchema = false)
 @TypeConverters(RatingConverter.class)
 public abstract class ProductDB extends RoomDatabase {
     private static ProductDB INSTANCE;

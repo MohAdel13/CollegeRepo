@@ -29,4 +29,7 @@ public class ProductModel {
 
     @SerializedName("rating")
     public RatingModel rating;
+
+    @SerializedName("count")
+    public int count;
 }

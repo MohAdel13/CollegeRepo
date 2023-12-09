@@ -31,7 +31,7 @@
         app:layout_constraintBottom_toTopOf="@+id/countTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productImageIV">
+        app:layout_constraintTop_toBottomOf="@id/productRateCV">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -152,6 +152,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/lightGrey"
         android:paddingBottom="10dp"
         android:text="Add to cart"
         android:textColor="@color/white"
@@ -161,5 +162,80 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="HardcodedText,TextContrastCheck" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/productRateCV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/productImageIV"
+        app:layout_constraintStart_toStartOf="@+id/productImageIV"
+        app:layout_constraintTop_toBottomOf="@+id/productImageIV"
+        tools:ignore="VisualLintBounds">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:backgroundTint="@color/white">
+
+            <ImageView
+                android:id="@+id/rate4StarBTN"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:importantForAccessibility="no"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toStartOf="@+id/rate5StarBTN"
+                app:layout_constraintStart_toEndOf="@+id/rate3StarBTN"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_star_outline_24" />
+
+            <ImageView
+                android:id="@+id/rate3StarBTN"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:importantForAccessibility="no"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_star_outline_24" />
+
+            <ImageView
+                android:id="@+id/rate2StarBTN"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:importantForAccessibility="no"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toStartOf="@+id/rate3StarBTN"
+                app:layout_constraintStart_toEndOf="@+id/rate1StarBTN"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_star_outline_24" />
+
+            <ImageView
+                android:id="@+id/rate5StarBTN"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:importantForAccessibility="no"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/rate3StarBTN"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_star_outline_24" />
+
+            <ImageView
+                android:id="@+id/rate1StarBTN"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:importantForAccessibility="no"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toStartOf="@+id/rate3StarBTN"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_star_outline_24" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityOrderSubmitBinding;
 import com.example.onlineshop.pojo.CartProductModel;
+import com.example.onlineshop.pojo.ProductDB;
 import com.example.onlineshop.pojo.ProductModel;
 import com.example.onlineshop.pojo.UserDB;
 import com.example.onlineshop.pojo.UserModel;
@@ -23,50 +24,84 @@ public class OrderSubmitActivity extends AppCompatActivity {
     UserDB userDB;
     UserModel us;
     ActivityOrderSubmitBinding binding;
+    ProductDB productDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //linking the activity to its layout
         binding = ActivityOrderSubmitBinding.inflate(LayoutInflater.from(OrderSubmitActivity.this));
         setContentView(binding.getRoot());
 
+        //taking instances of used databases
+        productDB = ProductDB.getInstance(getApplicationContext());
         userDB = UserDB.getInstance(getApplicationContext());
+
+        //get the passed value from the above activity
         Intent intent = getIntent();
         String user = intent.getStringExtra("user");
-        us = userDB.userDao().checkUser(user).get(0);
-        new getPrice().execute();
-        //Toast.makeText(this, user, Toast.LENGTH_SHORT).show();
 
+        //get the user from the database
+        us = userDB.userDao().checkUser(user).get(0);
+
+        //execute getPrice class method which i will describe below
+        new getPrice().execute();
+
+
+        //setting the checkout btn
         binding.checkoutBackBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CartActivity.class);
                 intent.putExtra("user", user);
+
+                //the below line makes the back activity cleared
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+
+                //the below line clear this activity
                 finish();
             }
         });
 
+
+        //setting the submit button
         binding.orderSubmitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(OrderSubmitActivity.this, "Order Submitted Successfully..", Toast.LENGTH_SHORT).show();
+
+                //updating the database of products by decreasing the sold amount from the database
+                for(int i=0; i<us.cartItems.size();i++)
+                {
+                    productDB.productDao().setCount(us.cartItems.get(i).product.title, us.cartItems.get(i).count);
+                }
+
+                //clearing the user cart in database
                 us.productsNames.clear();
                 us.cartItems.clear();
                 userDB.userDao().updateCart(us);
 
+                Toast.makeText(OrderSubmitActivity.this, "Order Submitted Successfully..", Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
                 intent.putExtra("user", user);
                 intent.putExtra("category", us.favCategory);
+
+                //the below line makes the back activity cleared
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+
+                //the below line clears this activity
                 finish();
             }
         });
 
+
+        //initialize one of the radio buttons as checked
         binding.cashRB.setChecked(true);
 
+        //makes the checking of one radio button cancels the other
+        /*------------------------------------------------------------------------------*/
         binding.cashRB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -86,13 +121,19 @@ public class OrderSubmitActivity extends AppCompatActivity {
                 }
             }
         });
+        /*------------------------------------------------------------------------------*/
     }
 
 
+    //this internal class extends AsyncTask which is used for multithreading so we can get data from the database
+        //in the same time of inflating the components as some of these components depends on the data we got.
     private class getPrice extends AsyncTask<Void,Void, Float>
     {
         @Override
-        protected Float doInBackground(Void... voids) {
+        protected Float doInBackground(Void... voids)
+        {
+
+            //getting the total price of products in the cart * their amount
             List<CartProductModel> cart  = us.cartItems;
             float price = 0;
             for(int i=0; i<cart.size();i++)
@@ -105,6 +146,8 @@ public class OrderSubmitActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Float price) {
             super.onPostExecute(price);
+
+            //writing the prices in textViews
             binding.orderTotalPriceTV.setText("USD " + Float.toString(price));
             binding.DeliveryPriceTV.setText("USD 1.0");
             binding.totalPriceTV.setText("USD "+ Float.toString(price+1));
