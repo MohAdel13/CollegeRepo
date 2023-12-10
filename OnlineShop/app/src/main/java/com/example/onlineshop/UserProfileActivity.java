@@ -143,14 +143,14 @@ public class UserProfileActivity extends AppCompatActivity {
                 builder.setView(getLayoutInflater().inflate(R.layout.dialog_layout2,null));
 
                 //setting title for the dialog
-                builder.setTitle("Remove Account..");
+                builder.setTitle("Are You Sure?!");
 
                 //setting Positive button for applying the account remove
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         userDB.userDao().deleteUser(us);
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
                     }

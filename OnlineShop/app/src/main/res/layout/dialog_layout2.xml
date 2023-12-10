@@ -4,17 +4,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:backgroundTint="#FFFFFF">
-
-
-    <TextView
-        android:id="@+id/dialogTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Are You Sure?!"
-        android:textAlignment="center"
-        android:textColor="#FFFF0000"
-        android:textSize="20sp"
-        tools:ignore="InefficientWeight" />
-</LinearLayout>
+    android:backgroundTint="#FFFFFF"/>
