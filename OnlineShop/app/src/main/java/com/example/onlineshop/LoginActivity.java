@@ -10,7 +10,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityLoginBinding;
+import com.example.onlineshop.pojo.AdminLoginFactory;
+import com.example.onlineshop.pojo.Login;
+import com.example.onlineshop.pojo.LoginFactory;
 import com.example.onlineshop.pojo.UserDB;
+import com.example.onlineshop.pojo.UserLogin;
+import com.example.onlineshop.pojo.UserLoginFactory;
 import com.example.onlineshop.pojo.UserModel;
 
 import java.util.List;
@@ -18,6 +23,8 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
     UserDB userDB;
     ActivityLoginBinding binding;
+    String loginType;
+    UserModel us;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,21 +73,37 @@ public class LoginActivity extends AppCompatActivity {
 
                     else
                     {
-                        //check the username and the password from the database and if found login
-                        List<UserModel> us = userDB.userDao().getUser(user, pass);
-                        if (!us.isEmpty())
+                        //determine is it user or admin login using factory design pattern
+                        LoginFactory loginFactory = determineLoginFactory(user);
+                        Login login = loginFactory.createLogin();
+
+                        //authenticate the login using proxy design pattern
+                        boolean found = login.authenticate(LoginActivity.this, user, pass);
+
+                        //if the authentication succeeded
+                        if (found)
                         {
-                            //if the rememberMe check box is checked update the user field isRemembered in
+                            //if it's user go to user activity
+                            if(login.getType().equals("user")) {
+                                //if the rememberMe check box is checked update the user field isRemembered in
                                 //the database
-                            if (binding.rememberCB.isChecked()) {
-                                userDB.userDao().logout();
-                                userDB.userDao().updateIsRemembered(true, user);
+                                if (binding.rememberCB.isChecked()) {
+                                    userDB.userDao().logout();
+                                    userDB.userDao().updateIsRemembered(true, user);
+                                }
+
+                                UserModel us = ((UserLogin)login).getUserModel();
+                                Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
+                                intent.putExtra("category", us.favCategory);
+                                intent.putExtra("user", us.username);
+                                startActivity(intent);
+                                finish();
                             }
-                            Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
-                            intent.putExtra("category",us.get(0).favCategory);
-                            intent.putExtra("user", us.get(0).username);
-                            startActivity(intent);
-                            finish();
+
+                            //else go to admin activity
+                            else{
+                                Toast.makeText(LoginActivity.this, "Welcome to admin panel", Toast.LENGTH_SHORT).show();
+                            }
                         }
                         else
                         {
@@ -99,6 +122,17 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }
             });
+        }
+    }
+
+    private LoginFactory determineLoginFactory(String username)
+    {
+        if(username.equals("admin")){
+            return new AdminLoginFactory();
+        }
+
+        else {
+            return new UserLoginFactory();
         }
     }
 }
