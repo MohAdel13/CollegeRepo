@@ -102,7 +102,8 @@ public class LoginActivity extends AppCompatActivity {
 
                             //else go to admin activity
                             else{
-                                Toast.makeText(LoginActivity.this, "Welcome to admin panel", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), AdminPanelActivity.class);
+                                startActivity(intent);
                             }
                         }
                         else

@@ -16,6 +16,12 @@
         android:theme="@style/Theme.OnlineShop"
         tools:targetApi="31">
         <activity
+            android:name=".AddProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminPanelActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserProfileActivity"
             android:exported="false" />
         <activity
