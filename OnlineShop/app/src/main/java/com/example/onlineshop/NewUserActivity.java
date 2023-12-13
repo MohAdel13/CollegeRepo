@@ -12,11 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityNewUserBinding;
-import com.example.onlineshop.pojo.CategoryDB;
-import com.example.onlineshop.pojo.CategoryModel;
-import com.example.onlineshop.pojo.ProductClient;
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.UserDB;
+import com.example.onlineshop.pojo.RoomDataBases.CategoryDB;
+import com.example.onlineshop.pojo.Models.CategoryModel;
+import com.example.onlineshop.pojo.API.ProductClient;
+import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
 
 import java.util.List;
 

@@ -11,15 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.onlineshop.databinding.CartItemBinding;
-import com.example.onlineshop.pojo.CartProductModel;
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.ProductModel;
-import com.example.onlineshop.pojo.UserDB;
-import com.example.onlineshop.pojo.UserModel;
+import com.example.onlineshop.pojo.Models.CartProductModel;
+import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
+import com.example.onlineshop.pojo.Models.UserModel;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 //class adapter for the cart activity recyclerView to hold the products of the cart
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cartViewHolder>{

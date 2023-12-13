@@ -1,13 +1,13 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.converters;
 
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
+import com.example.onlineshop.pojo.Models.ProductModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.Map;
 
 public class ProductModelConverter {
     @TypeConverter

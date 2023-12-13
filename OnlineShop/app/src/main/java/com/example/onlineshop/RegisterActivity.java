@@ -9,15 +9,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityRegisterBinding;
-import com.example.onlineshop.pojo.CartProductModel;
-import com.example.onlineshop.pojo.ProductModel;
-import com.example.onlineshop.pojo.UserDB;
-import com.example.onlineshop.pojo.UserModel;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
+import com.example.onlineshop.pojo.Models.UserModel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 

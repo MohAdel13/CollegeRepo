@@ -27,5 +27,13 @@ public class AdminPanelActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        binding.editCategoriesBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AdminCategoriesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

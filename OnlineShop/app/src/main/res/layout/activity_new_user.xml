@@ -30,6 +30,7 @@
         android:focusable="true"
         android:importantForAccessibility="no"
         android:src="@drawable/baseline_navigate_next_24"
+        app:tint="@color/white"
         app:backgroundTint="@color/orangeSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

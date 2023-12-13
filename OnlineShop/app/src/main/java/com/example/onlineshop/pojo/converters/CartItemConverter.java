@@ -1,7 +1,8 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.converters;
 
 import androidx.room.TypeConverter;
 
+import com.example.onlineshop.pojo.Models.CartProductModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

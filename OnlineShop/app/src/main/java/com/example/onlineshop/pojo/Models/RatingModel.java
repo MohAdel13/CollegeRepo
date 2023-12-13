@@ -1,4 +1,4 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.Models;
 
 public class RatingModel {
     public float rate;

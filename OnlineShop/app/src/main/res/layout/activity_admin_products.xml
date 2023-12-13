@@ -143,20 +143,20 @@
                 android:id="@+id/addProductTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:text="@string/add_product"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/adminLogoutTV"
+                app:layout_constraintEnd_toEndOf="@+id/addIV"
                 app:layout_constraintHorizontal_bias="0.397"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="@+id/addIV"
+                app:layout_constraintTop_toBottomOf="@+id/addIV" />
 
             <ImageButton
                 android:id="@+id/adminLogoutBTN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="108dp"
+                android:layout_marginEnd="80dp"
                 android:background="@null"
                 android:importantForAccessibility="no"
                 android:src="@drawable/baseline_logout_24"
@@ -169,20 +169,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/logout"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/addProductTV"
                 app:layout_constraintEnd_toEndOf="@+id/adminLogoutBTN"
                 app:layout_constraintStart_toStartOf="@+id/adminLogoutBTN"
-                app:layout_constraintTop_toBottomOf="@+id/adminLogoutBTN" />
+                app:layout_constraintTop_toTopOf="@+id/addProductTV" />
 
             <ImageView
                 android:id="@+id/addIV"
                 android:layout_width="48dp"
                 android:layout_height="45dp"
+                android:layout_marginStart="80dp"
+                android:importantForAccessibility="no"
                 android:src="@drawable/addicon"
-                app:layout_constraintEnd_toStartOf="@+id/adminLogoutBTN"
-                app:layout_constraintHorizontal_bias="0.411"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

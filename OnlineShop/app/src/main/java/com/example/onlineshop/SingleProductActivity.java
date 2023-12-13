@@ -9,12 +9,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.onlineshop.databinding.ActivitySingleProductBinding;
-import com.example.onlineshop.pojo.CartProductModel;
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.ProductModel;
-import com.example.onlineshop.pojo.RatingModel;
-import com.example.onlineshop.pojo.UserDB;
-import com.example.onlineshop.pojo.UserModel;
+import com.example.onlineshop.pojo.Models.CartProductModel;
+import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
+import com.example.onlineshop.pojo.Models.ProductModel;
+import com.example.onlineshop.pojo.Models.RatingModel;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
+import com.example.onlineshop.pojo.Models.UserModel;
 
 import java.util.List;
 
@@ -56,6 +56,7 @@ public class SingleProductActivity extends AppCompatActivity {
         binding.productCatTV.setText(prod.category);
         binding.productPriceTV.setText("USD " + Float.toString(prod.price));
         binding.productDesTV.setText(prod.description);
+        binding.prodCountTV.setText(Integer.toString(prod.count));
 
         //set rating buttons
         /*-------------------------------------------------------------------------------*/

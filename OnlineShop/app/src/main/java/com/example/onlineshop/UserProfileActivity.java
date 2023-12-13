@@ -12,14 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.example.onlineshop.databinding.ActivityProductsBinding;
 import com.example.onlineshop.databinding.ActivityUserProfileBinding;
-import com.example.onlineshop.pojo.CategoryDB;
-import com.example.onlineshop.pojo.CategoryModel;
-import com.example.onlineshop.pojo.UserDB;
-import com.example.onlineshop.pojo.UserModel;
+import com.example.onlineshop.pojo.RoomDataBases.CategoryDB;
+import com.example.onlineshop.pojo.Models.CategoryModel;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
+import com.example.onlineshop.pojo.Models.UserModel;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class UserProfileActivity extends AppCompatActivity {

@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityLoginBinding;
-import com.example.onlineshop.pojo.AdminLoginFactory;
-import com.example.onlineshop.pojo.Login;
-import com.example.onlineshop.pojo.LoginFactory;
-import com.example.onlineshop.pojo.UserDB;
-import com.example.onlineshop.pojo.UserLogin;
-import com.example.onlineshop.pojo.UserLoginFactory;
-import com.example.onlineshop.pojo.UserModel;
+import com.example.onlineshop.pojo.DesignPatterns.AdminLoginFactory;
+import com.example.onlineshop.pojo.DesignPatterns.Login;
+import com.example.onlineshop.pojo.DesignPatterns.LoginFactory;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
+import com.example.onlineshop.pojo.DesignPatterns.UserLogin;
+import com.example.onlineshop.pojo.DesignPatterns.UserLoginFactory;
+import com.example.onlineshop.pojo.Models.UserModel;
 
 import java.util.List;
 

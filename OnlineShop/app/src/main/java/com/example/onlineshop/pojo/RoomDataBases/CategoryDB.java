@@ -1,10 +1,12 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.RoomDataBases;
 
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.example.onlineshop.pojo.Models.CategoryModel;
 
 @Database(entities = CategoryModel.class,version = 3,exportSchema = false)
 public abstract class CategoryDB extends RoomDatabase {

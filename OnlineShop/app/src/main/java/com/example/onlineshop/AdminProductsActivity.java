@@ -19,10 +19,10 @@ import android.widget.PopupMenu;
 import android.widget.SearchView;
 
 import com.example.onlineshop.databinding.ActivityAdminProductsBinding;
-import com.example.onlineshop.pojo.CategoryDB;
-import com.example.onlineshop.pojo.CategoryModel;
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.ProductModel;
+import com.example.onlineshop.pojo.RoomDataBases.CategoryDB;
+import com.example.onlineshop.pojo.Models.CategoryModel;
+import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
+import com.example.onlineshop.pojo.Models.ProductModel;
 import com.journeyapps.barcodescanner.CaptureActivity;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;

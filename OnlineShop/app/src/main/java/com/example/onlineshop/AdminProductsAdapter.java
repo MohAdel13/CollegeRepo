@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.onlineshop.databinding.ProductItemBinding;
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.ProductModel;
+import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
+import com.example.onlineshop.pojo.Models.ProductModel;
 
 import java.util.List;
 

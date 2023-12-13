@@ -1,9 +1,8 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.Models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.onlineshop.pojo.RatingModel;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "PRODUCT_TABLE")

@@ -22,12 +22,12 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityProductsBinding;
-import com.example.onlineshop.pojo.CategoryDB;
-import com.example.onlineshop.pojo.CategoryModel;
-import com.example.onlineshop.pojo.ProductClient;
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.ProductModel;
-import com.example.onlineshop.pojo.UserDB;
+import com.example.onlineshop.pojo.RoomDataBases.CategoryDB;
+import com.example.onlineshop.pojo.Models.CategoryModel;
+import com.example.onlineshop.pojo.API.ProductClient;
+import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
+import com.example.onlineshop.pojo.Models.ProductModel;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
 import com.journeyapps.barcodescanner.CaptureActivity;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;

@@ -1,4 +1,4 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.RoomDataBases;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -7,8 +7,9 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.onlineshop.pojo.Models.UserModel;
+
 import java.util.List;
-import java.util.Map;
 
 @Dao
 public interface UserDao {
@@ -28,7 +29,7 @@ public interface UserDao {
     void updateBirth(String username, String birthDate);
 
     @Query("SELECT * FROM USER_TABLE WHERE username =:username AND password =:password")
-    List<UserModel> getUser(String username,String password);
+    List<UserModel> getUser(String username, String password);
 
     @Query("SELECT * FROM USER_TABLE WHERE username =:username OR email =:email")
     List<UserModel> failedRegUser(String username,String email);

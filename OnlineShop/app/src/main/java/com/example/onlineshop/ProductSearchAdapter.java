@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.example.onlineshop.pojo.ProductModel;
+import com.example.onlineshop.pojo.Models.ProductModel;
 
 import java.util.ArrayList;
 import java.util.List;

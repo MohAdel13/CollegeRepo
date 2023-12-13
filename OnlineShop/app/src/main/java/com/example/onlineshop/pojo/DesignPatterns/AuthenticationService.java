@@ -1,6 +1,9 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.DesignPatterns;
 
 import android.content.Context;
+
+import com.example.onlineshop.pojo.Models.UserModel;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
 
 import java.util.List;
 

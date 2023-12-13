@@ -1,4 +1,4 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.API;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;

@@ -1,12 +1,14 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.Models;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import com.example.onlineshop.pojo.converters.CartItemConverter;
+import com.example.onlineshop.pojo.converters.ProductsNameListConverter;
+
 import java.util.List;
-import java.util.Map;
 
 @Entity(tableName = "USER_TABLE")
 public class UserModel {

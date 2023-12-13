@@ -1,7 +1,6 @@
 package com.example.onlineshop;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ContentInfoCompat;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,11 +11,10 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityOrderSubmitBinding;
-import com.example.onlineshop.pojo.CartProductModel;
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.ProductModel;
-import com.example.onlineshop.pojo.UserDB;
-import com.example.onlineshop.pojo.UserModel;
+import com.example.onlineshop.pojo.Models.CartProductModel;
+import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
+import com.example.onlineshop.pojo.Models.UserModel;
 
 import java.util.List;
 

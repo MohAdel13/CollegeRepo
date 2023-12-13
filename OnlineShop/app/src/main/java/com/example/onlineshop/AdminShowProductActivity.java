@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.onlineshop.databinding.ActivityAdminShowProductBinding;
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.ProductModel;
+import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
+import com.example.onlineshop.pojo.Models.ProductModel;
 
 public class AdminShowProductActivity extends AppCompatActivity {
     ActivityAdminShowProductBinding binding;

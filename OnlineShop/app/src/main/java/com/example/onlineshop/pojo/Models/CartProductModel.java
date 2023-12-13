@@ -1,6 +1,4 @@
-package com.example.onlineshop.pojo;
-
-import java.util.List;
+package com.example.onlineshop.pojo.Models;
 
 public class CartProductModel {
     public ProductModel product;

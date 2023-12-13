@@ -64,4 +64,5 @@
     <string name="image_uri">Image URI</string>
     <string name="title">Title</string>
     <string name="edit_product">Edit Product</string>
+    <string name="delete">Delete</string>
 </resources>

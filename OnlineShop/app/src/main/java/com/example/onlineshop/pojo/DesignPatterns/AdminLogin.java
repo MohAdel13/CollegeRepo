@@ -1,4 +1,4 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.DesignPatterns;
 
 import android.content.Context;
 

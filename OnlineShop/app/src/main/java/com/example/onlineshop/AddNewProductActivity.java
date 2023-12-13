@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.Toast;
 import com.example.onlineshop.databinding.ActivityAddNewProductBinding;
 
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.ProductModel;
-import com.example.onlineshop.pojo.RatingModel;
+import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
+import com.example.onlineshop.pojo.Models.ProductModel;
+import com.example.onlineshop.pojo.Models.RatingModel;
 
 public class AddNewProductActivity extends AppCompatActivity {
 

@@ -1,6 +1,8 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.DesignPatterns;
 
 import android.content.Context;
+
+import com.example.onlineshop.pojo.Models.UserModel;
 
 public class UserLogin implements Login{
     private UserModel user;

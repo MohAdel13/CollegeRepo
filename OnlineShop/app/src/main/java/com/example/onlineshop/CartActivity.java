@@ -8,14 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.onlineshop.databinding.ActivityCartBinding;
-import com.example.onlineshop.pojo.CartProductModel;
-import com.example.onlineshop.pojo.ProductDB;
-import com.example.onlineshop.pojo.ProductModel;
-import com.example.onlineshop.pojo.UserDB;
-import com.example.onlineshop.pojo.UserModel;
+import com.example.onlineshop.pojo.Models.CartProductModel;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
+import com.example.onlineshop.pojo.Models.UserModel;
 
 import java.util.List;
-import java.util.Map;
 
 public class CartActivity extends AppCompatActivity {
 

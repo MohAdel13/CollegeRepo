@@ -1,4 +1,6 @@
-package com.example.onlineshop.pojo;
+package com.example.onlineshop.pojo.API;
+
+import com.example.onlineshop.pojo.Models.ProductModel;
 
 import java.util.List;
 

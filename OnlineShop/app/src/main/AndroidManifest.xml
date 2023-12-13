@@ -16,6 +16,9 @@
         android:theme="@style/Theme.OnlineShop"
         tools:targetApi="31">
         <activity
+            android:name=".AdminCategoriesActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditProductActivity"
             android:exported="false" />
         <activity
