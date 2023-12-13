@@ -52,4 +52,16 @@
     <string name="save">Save</string>
     <string name="security">Security</string>
     <string name="are_you_sure">Are You Sure?!</string>
+    <string name="add_product">Add Product</string>
+    <string name="choose_what_to_do">Choose What To Do</string>
+    <string name="best_sellings">Best Sellings</string>
+    <string name="edit_categories">Edit Categories</string>
+    <string name="edit_products">Edit Products</string>
+    <string name="edit_users">Edit Users</string>
+    <string name="feedbacks">Feedbacks</string>
+    <string name="show_orders">Show Orders</string>
+    <string name="count">Count</string>
+    <string name="image_uri">Image URI</string>
+    <string name="title">Title</string>
+    <string name="edit_product">Edit Product</string>
 </resources>

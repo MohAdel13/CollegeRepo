@@ -66,6 +66,18 @@ public class AdminProductsAdapter extends RecyclerView.Adapter<AdminProductsAdap
         public ProductViewHolder(@NonNull ProductItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+
+
+            binding.prodItemCV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, AdminShowProductActivity.class);
+                    intent.putExtra("product",products.get(getAdapterPosition()).title);
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
+
+
     }
 }
