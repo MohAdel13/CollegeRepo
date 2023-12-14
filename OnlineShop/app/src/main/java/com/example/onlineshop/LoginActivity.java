@@ -22,8 +22,6 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
     UserDB userDB;
     ActivityLoginBinding binding;
-    String loginType;
-    UserModel us;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                                     userDB.userDao().updateIsRemembered(true, user);
                                 }
 
+                                /*---------------DC-----------------*/
                                 UserModel us = ((UserLogin)login).getUserModel();
                                 Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
                                 intent.putExtra("category", us.favCategory);

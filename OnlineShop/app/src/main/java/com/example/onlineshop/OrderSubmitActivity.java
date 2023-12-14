@@ -12,10 +12,13 @@ import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityOrderSubmitBinding;
 import com.example.onlineshop.pojo.Models.CartProductModel;
+import com.example.onlineshop.pojo.Models.OrderModel;
+import com.example.onlineshop.pojo.RoomDataBases.OrderDB;
 import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
 import com.example.onlineshop.pojo.RoomDataBases.UserDB;
 import com.example.onlineshop.pojo.Models.UserModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderSubmitActivity extends AppCompatActivity {
@@ -23,6 +26,8 @@ public class OrderSubmitActivity extends AppCompatActivity {
     UserModel us;
     ActivityOrderSubmitBinding binding;
     ProductDB productDB;
+    OrderDB orderDB;
+    float totalPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,7 @@ public class OrderSubmitActivity extends AppCompatActivity {
         //taking instances of used databases
         productDB = ProductDB.getInstance(getApplicationContext());
         userDB = UserDB.getInstance(getApplicationContext());
+        orderDB = OrderDB.getInstance(getApplicationContext());
 
         //get the passed value from the above activity
         Intent intent = getIntent();
@@ -68,11 +74,24 @@ public class OrderSubmitActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                OrderModel order = new OrderModel();
+                order.username = user;
+                order.state = 0;
+                order.totalPrice = totalPrice;
+                order.products = new ArrayList<>();
+                order.countOfEachProduct = new ArrayList<>();
+
                 //updating the database of products by decreasing the sold amount from the database
                 for(int i=0; i<us.cartItems.size();i++)
                 {
                     productDB.productDao().setCount(us.cartItems.get(i).product.title, us.cartItems.get(i).count);
+
+                    order.products.add(us.cartItems.get(i).product);
+                    order.countOfEachProduct.add(us.cartItems.get(i).count);
                 }
+
+                orderDB.orderDao().insertOrder(order);
+                us.orders.add(order);
 
                 //clearing the user cart in database
                 us.productsNames.clear();
@@ -138,6 +157,8 @@ public class OrderSubmitActivity extends AppCompatActivity {
             {
                 price += cart.get(i).product.price * cart.get(i).count;
             }
+
+            totalPrice = price;
             return price;
         }
 

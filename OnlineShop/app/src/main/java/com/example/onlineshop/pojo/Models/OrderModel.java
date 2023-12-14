@@ -20,4 +20,5 @@ public class OrderModel {
     public Float totalPrice;
     @TypeConverters(OrderProductsCountConverter.class)
     public List<Integer> countOfEachProduct;
+    public int state;
 }

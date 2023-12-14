@@ -70,4 +70,6 @@ dependencies {
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation ("com.google.zxing:core:3.4.1")
 
+    //For BarChart
+    implementation ("com.diogobernardino:williamchart:3.10.1")
 }

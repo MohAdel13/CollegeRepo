@@ -59,18 +59,9 @@ public class RegisterActivity extends AppCompatActivity {
                     //check if the username or the email aren't used before
                     if(userDB.userDao().failedRegUser(user,email).isEmpty())
                     {
-                        //initializing a new user with the data got from the user
-                        UserModel us = new UserModel();
-                        us.email = email;
-                        us.password = pass;
-                        us.username = user;
-                        us.cartItems = new ArrayList<>();
-                        us.productsNames = new ArrayList<>();
-
-                        //update the database
-                        userDB.userDao().insertUser(us);
-
                         Intent intent = new Intent(getApplicationContext(), NewUserActivity.class);
+                        intent.putExtra("pass",pass);
+                        intent.putExtra("email",email);
                         intent.putExtra("user",user);
                         startActivity(intent);
                         finish();

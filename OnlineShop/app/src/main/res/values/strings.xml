@@ -65,4 +65,9 @@
     <string name="title">Title</string>
     <string name="edit_product">Edit Product</string>
     <string name="delete">Delete</string>
+    <string name="credit_card_id">Credit Card Id</string>
+    <string name="ssn">SSN</string>
+    <string name="username_to_delete">Username to Delete:</string>
+    <string name="sale_amount">Sale Amount:</string>
+    <string name="product_to_add_sale">Product To Add Sale:</string>
 </resources>

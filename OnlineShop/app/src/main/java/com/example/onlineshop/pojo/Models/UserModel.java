@@ -6,6 +6,8 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.example.onlineshop.pojo.converters.CartItemConverter;
+import com.example.onlineshop.pojo.converters.CreditCardConverter;
+import com.example.onlineshop.pojo.converters.OrdersConverter;
 import com.example.onlineshop.pojo.converters.ProductsNameListConverter;
 
 import java.util.List;
@@ -24,4 +26,9 @@ public class UserModel {
     public List<CartProductModel> cartItems;
     @TypeConverters(ProductsNameListConverter.class)
     public List<String> productsNames;
+    @TypeConverters(OrdersConverter.class)
+    public List<OrderModel> orders;
+    @TypeConverters(CreditCardConverter.class)
+    public CreditCardModel card;
+    public int SSN;
 }

@@ -12,12 +12,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityNewUserBinding;
+import com.example.onlineshop.pojo.Models.CreditCardModel;
+import com.example.onlineshop.pojo.Models.UserModel;
 import com.example.onlineshop.pojo.RoomDataBases.CategoryDB;
 import com.example.onlineshop.pojo.Models.CategoryModel;
 import com.example.onlineshop.pojo.API.ProductClient;
 import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
 import com.example.onlineshop.pojo.RoomDataBases.UserDB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -46,6 +49,8 @@ public class NewUserActivity extends AppCompatActivity {
         //get the passed value from the above activity
         Intent intent = getIntent();
         String user = intent.getStringExtra("user");
+        String pass = intent.getStringExtra("pass");
+        String email = intent.getStringExtra("email");
 
         //getting instances for the used databases
         productDB = ProductDB.getInstance(getApplicationContext());
@@ -134,15 +139,32 @@ public class NewUserActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    if(binding.newUserSsnET.equals(""))
+                    {
+                        Toast.makeText(NewUserActivity.this, "Please Enter Right Data", Toast.LENGTH_SHORT).show();
+                    }
                     //converting the birthdate from datePicker to string
                     String day = Integer.toString(binding.datePicker.getDayOfMonth());
                     String month = Integer.toString(binding.datePicker.getMonth() + 1);
                     String year = Integer.toString(binding.datePicker.getYear());
                     String date = day + " / " + month + " / " + year;
 
-                    //store the data in the database
-                    userDB.userDao().updateBirth(user, date);
-                    userDB.userDao().updateCat(selectedItem, user);
+                    UserModel us = new UserModel();
+                    us.cartItems = new ArrayList<>();
+                    us.email = email;
+                    us.password = pass;
+                    us.productsNames = new ArrayList<>();
+                    us.birthDate = date;
+                    us.orders = new ArrayList<>();
+                    us.username = user;
+                    us.favCategory = selectedItem;
+                    us.isRemembered = false;
+                    us.SSN = Integer.parseInt(binding.newUserSsnET.getText().toString());
+                    CreditCardModel card = new CreditCardModel();
+                    card.id = Integer.parseInt(binding.creditCardET.getText().toString());
+                    card.credit = 2000;
+                    us.card = card;
+                    userDB.userDao().insertUser(us);
 
                     Intent intent = new Intent(getApplicationContext(),ProductsActivity.class);
                     intent.putExtra("category", selectedItem);

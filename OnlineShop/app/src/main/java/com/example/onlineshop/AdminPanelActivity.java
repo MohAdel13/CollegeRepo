@@ -35,5 +35,13 @@ public class AdminPanelActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        binding.editUsersBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), DeleteUserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
