@@ -29,47 +29,34 @@
                 android:id="@+id/adminFunctionTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="@string/choose_what_to_do"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/editCategoriesBTN"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/bestSellingsBTN"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/best_sellings"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editUsersBTN"
-                tools:ignore="TextContrastCheck" />
-
-            <Button
                 android:id="@+id/editUsersBTN"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="@string/edit_users"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editProductsBTN"
                 tools:ignore="TextContrastCheck" />
 
             <Button
                 android:id="@+id/editProductsBTN"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="@string/edit_products"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/editUsersBTN"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editCategoriesBTN"
@@ -79,40 +66,30 @@
                 android:id="@+id/editCategoriesBTN"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="@string/edit_categories"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/editUsersBTN"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adminFunctionTV"
                 tools:ignore="TextContrastCheck" />
 
             <Button
                 android:id="@+id/showOrdersBTN"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:text="@string/show_orders"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/bestSellingsBTN"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editUsersBTN"
-                tools:ignore="TextContrastCheck" />
-
-            <Button
-                android:id="@+id/feedpacksBTN"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/feedbacks"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bestSellingsBTN"
+                app:layout_constraintTop_toBottomOf="@+id/editUsersBTN"
                 tools:ignore="TextContrastCheck" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

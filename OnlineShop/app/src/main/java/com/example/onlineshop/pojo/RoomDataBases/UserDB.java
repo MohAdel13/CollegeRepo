@@ -11,7 +11,7 @@ import com.example.onlineshop.pojo.Models.UserModel;
 import com.example.onlineshop.pojo.converters.ProductModelConverter;
 import com.example.onlineshop.pojo.converters.RatingConverter;
 
-@Database(entities = UserModel.class,version = 15,exportSchema = false)
+@Database(entities = UserModel.class,version = 16,exportSchema = false)
 @TypeConverters({ProductModelConverter.class, RatingConverter.class})
 public abstract class UserDB extends RoomDatabase {
     private static UserDB INSTANCE;

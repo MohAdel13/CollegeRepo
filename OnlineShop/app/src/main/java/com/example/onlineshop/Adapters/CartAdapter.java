@@ -1,4 +1,4 @@
-package com.example.onlineshop;
+package com.example.onlineshop.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -26,7 +26,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cartViewHolder
     List<CartProductModel> cart;
     ProductDB productDB;
 
-    CartAdapter(String user, Context context)
+    public CartAdapter(String user, Context context)
     {
         //initializing the class attributes and getting instances of the used databases
         this.context = context;

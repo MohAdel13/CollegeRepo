@@ -10,7 +10,7 @@ import androidx.room.TypeConverters;
 import com.example.onlineshop.pojo.Models.ProductModel;
 import com.example.onlineshop.pojo.converters.RatingConverter;
 
-@Database(entities = ProductModel.class,version = 9,exportSchema = false)
+@Database(entities = ProductModel.class,version = 12,exportSchema = false)
 @TypeConverters(RatingConverter.class)
 public abstract class ProductDB extends RoomDatabase {
     private static ProductDB INSTANCE;

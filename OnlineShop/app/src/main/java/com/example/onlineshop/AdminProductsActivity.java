@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 
+import com.example.onlineshop.Adapters.AdminProductsAdapter;
+import com.example.onlineshop.Adapters.ProductSearchAdapter;
 import com.example.onlineshop.databinding.ActivityAdminProductsBinding;
 import com.example.onlineshop.pojo.RoomDataBases.CategoryDB;
 import com.example.onlineshop.pojo.Models.CategoryModel;

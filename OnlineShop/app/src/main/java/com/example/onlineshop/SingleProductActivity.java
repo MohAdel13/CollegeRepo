@@ -1,15 +1,21 @@
 package com.example.onlineshop;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.onlineshop.databinding.ActivitySingleProductBinding;
 import com.example.onlineshop.pojo.Models.CartProductModel;
+import com.example.onlineshop.pojo.Models.CategoryModel;
+import com.example.onlineshop.pojo.Models.FeedbackModel;
 import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
 import com.example.onlineshop.pojo.Models.ProductModel;
 import com.example.onlineshop.pojo.Models.RatingModel;
@@ -65,6 +71,8 @@ public class SingleProductActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //converting the outlined star to solid one to look like its pressed
                 binding.rate1StarBTN.setImageDrawable(getDrawable(R.drawable.baseline_star_rate_26));
+
+
 
                 //perform star click method implemented below
                 starClick(1);
@@ -235,5 +243,29 @@ public class SingleProductActivity extends AppCompatActivity {
 
         //update the database with the new rate
         productDB.productDao().updateRate(prod);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(SingleProductActivity.this, R.style.MyDialogTheme);
+
+        View v = getLayoutInflater().inflate(R.layout.new_category_dialog,null);
+
+        builder.setView(v);
+
+        builder.setTitle("Give a Feedback..");
+
+        builder.setPositiveButton("save", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                EditText dialogET = v.findViewById(R.id.dialogET);
+                FeedbackModel feedback = new FeedbackModel();
+                feedback.message = dialogET.getText().toString();
+                feedback.rating = rate;
+                prod.feedbacks.add(feedback);
+                productDB.productDao().updateRate(prod);
+                Toast.makeText(SingleProductActivity.this, "Feedback Sent..", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel",null);
+
+        builder.show();
     }
 }

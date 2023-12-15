@@ -66,4 +66,20 @@
         app:tint="@color/orangeSecondary"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,ImageContrastCheck" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ordersBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:background="@color/white"
+        android:clickable="true"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/orders_icon"
+        app:tint="@color/orangeSecondary"
+        android:importantForAccessibility="no"
+        tools:ignore="KeyboardInaccessibleWidget" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,8 +2,11 @@ package com.example.onlineshop.pojo.Models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
-import com.google.gson.annotations.SerializedName;
+import com.example.onlineshop.pojo.converters.FeedbackListConverter;
+
+import java.util.List;
 
 @Entity(tableName = "PRODUCT_TABLE")
 public class ProductModel {
@@ -11,24 +14,20 @@ public class ProductModel {
     @PrimaryKey
     public int id;
 
-    @SerializedName("title")
     public String title;
 
-    @SerializedName("price")
     public float price;
 
-    @SerializedName("description")
     public String description;
 
-    @SerializedName("category")
     public String category;
 
-    @SerializedName("image")
     public String image;
-
-    @SerializedName("rating")
     public RatingModel rating;
 
-    @SerializedName("count")
     public int count;
+
+    public float sale;
+    @TypeConverters(FeedbackListConverter.class)
+    public List<FeedbackModel> feedbacks;
 }

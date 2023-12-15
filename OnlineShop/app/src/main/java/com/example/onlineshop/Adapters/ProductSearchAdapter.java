@@ -1,4 +1,4 @@
-package com.example.onlineshop;
+package com.example.onlineshop.Adapters;
 
 import android.content.Context;
 import android.text.TextUtils;

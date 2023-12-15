@@ -1,4 +1,4 @@
-package com.example.onlineshop;
+package com.example.onlineshop.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.onlineshop.SingleProductActivity;
 import com.example.onlineshop.databinding.ProductItemBinding;
-import com.example.onlineshop.pojo.RoomDataBases.ProductDB;
 import com.example.onlineshop.pojo.Models.ProductModel;
 
 import java.util.List;
@@ -20,13 +20,11 @@ import java.util.List;
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductViewHolder> {
     private List<ProductModel> products;
     private Context context;
-    private ProductDB db;
     private String user;
 
-    ProductsAdapter(Context context, String user) {
+    public ProductsAdapter(Context context, String user) {
         //initializing the class attributes
         this.context = context;
-        db = ProductDB.getInstance(context);
         this.user = user;
     }
 
@@ -50,6 +48,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         binding.priceTV.setText("USD " + Float.toString(products.get(position).price));
         binding.prodTitleTV.setText(products.get(position).title);
         binding.rateTV.setText(Float.toString(products.get(position).rating.rate));
+
+        if(products.get(position).sale != 0)
+        {
+            binding.prodSaleTV.setText("Sale" + Float.toString(products.get(position).sale));
+        }
+        else {
+            binding.prodSaleTV.setVisibility(View.INVISIBLE);
+        }
     }
 
     //used to get the count of productList of the adapter

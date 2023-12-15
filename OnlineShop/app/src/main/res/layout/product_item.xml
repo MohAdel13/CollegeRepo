@@ -58,7 +58,21 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ImageContrastCheck,VisualLintBounds"
                     tools:srcCompat="@tools:sample/avatars" />
+
             </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/prodSaleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/sale"
+                android:textColor="@color/orangeSecondary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/prodTitleTV"

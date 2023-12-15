@@ -23,20 +23,26 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        //setting the back btn
+        //setting the back button onClick
         binding.forgetBackBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //navigate to the login activity
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+
+                //can't go back to this activity any more
                 finish();
             }
         });
 
-        //setting the reset password button
+        //setting the reset password button onClick
         binding.resetPasswordBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //get the fields values
                 String user = binding.forgetUserET.getText().toString();
                 String pass = binding.forgetPassET.getText().toString();
                 String confPass = binding.confPassET.getText().toString();
@@ -45,31 +51,40 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 if(pass.equals("")||
                         user.equals("")|| confPass.equals(""))
                 {
+                    //make a message to the user to tell him to enter valid data
                     Toast.makeText(getApplicationContext(),"Please Enter Valid Data",Toast.LENGTH_LONG).show();
                 }
                 else
                 {
-                    //getting an instance of the database
+                    //getting an instance of the user database
                     userDB = UserDB.getInstance(getApplicationContext());
 
                     //checking if the username isn't correct
                     if(userDB.userDao().checkUser(user).isEmpty())
                     {
-                        Toast.makeText(getApplicationContext(),"This User is Not Correct",Toast.LENGTH_LONG).show();
+                        //inform the user that the username is incorrect
+                        Toast.makeText(getApplicationContext(),"This User is Not Correct..",Toast.LENGTH_LONG).show();
                     }
 
                     //checking if the pass and confirm pass not matched
                     else if(!pass.equals(confPass))
                     {
-                        Toast.makeText(getApplicationContext(),"Password Not Matched",Toast.LENGTH_LONG).show();
+                        //inform the user that the password fields are not matched
+                        Toast.makeText(getApplicationContext(),"Password Not Matched..",Toast.LENGTH_LONG).show();
                     }
                     else
                     {
                         //updating the database with the new password
                         userDB.userDao().updatePassword(user,pass);
-                        Toast.makeText(getApplicationContext(),"Password is Changed",Toast.LENGTH_LONG).show();
+
+                        //tell the user that the password is changed
+                        Toast.makeText(getApplicationContext(),"Password is Changed..",Toast.LENGTH_LONG).show();
+
+                        //navigate to the login activity
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
+
+                        //can't back to this activity anymore
                         finish();
                     }
 
@@ -77,12 +92,16 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             }
         });
 
-        //setting the register button
+        //setting the register button onClick
         binding.register2TV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //navigate to the register activity
                 Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
                 startActivity(intent);
+
+                //can't back to this activity anymore
                 finish();
             }
         });

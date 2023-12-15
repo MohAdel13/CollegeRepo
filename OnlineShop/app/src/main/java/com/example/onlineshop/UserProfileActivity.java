@@ -35,11 +35,11 @@ public class UserProfileActivity extends AppCompatActivity {
         binding = ActivityUserProfileBinding.inflate(LayoutInflater.from(UserProfileActivity.this));
         setContentView(binding.getRoot());
 
-        //get the passed values from the above activity
+        //get the passed values from the previous activity
         Intent intent = getIntent();
         user = intent.getStringExtra("user");
 
-        //get instance of used databased
+        //get instance of used databases
         categoryDB = CategoryDB.getInstance(getApplicationContext());
         userDB = UserDB.getInstance(getApplicationContext());
 
@@ -65,7 +65,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         if(us.birthDate!=null)
         {
-            //if the birthdate of the user is stored can the datePicker starts from it
+            //if the birthdate of the user is stored the datePicker starts from it
             String[] userBirth = us.birthDate.split(" / ");
             binding.datePicker2.init(Integer.parseInt(userBirth[2]),
                     Integer.parseInt(userBirth[1])-1,Integer.parseInt(userBirth[0]),null);
@@ -88,6 +88,8 @@ public class UserProfileActivity extends AppCompatActivity {
         binding.profileBackBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //close this activity and go to the previous one
                 finish();
             }
         });
@@ -96,13 +98,14 @@ public class UserProfileActivity extends AppCompatActivity {
         binding.profileSaveBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // if no thing is selected from the spinner
                 if(selectedItem == null)
                 {
                     Toast.makeText(getApplicationContext(), "Please Enter A Category", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    //converting the birthdate from datePicker to string
+                    //converting the birthdate from datePicker format to string
                     String day = Integer.toString(binding.datePicker2.getDayOfMonth());
                     String month = Integer.toString(binding.datePicker2.getMonth() + 1);
                     String year = Integer.toString(binding.datePicker2.getYear());
@@ -112,25 +115,35 @@ public class UserProfileActivity extends AppCompatActivity {
                     userDB.userDao().updateBirth(user, date);
                     userDB.userDao().updateCat(selectedItem, user);
 
+                    //navigate to the products activity
                     Intent intent = new Intent(getApplicationContext(),ProductsActivity.class);
+
+                    //send the category and the user to the new activity to use there
                     intent.putExtra("category", selectedItem);
                     intent.putExtra("user", user);
                     startActivity(intent);
+
+                    //can't back to this activity any more
                     finish();
                 }
             }
         });
 
-        //set the change password button
+        //set the change password button onClick
         binding.profileChangePassTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //navigate to forget password activity
                 Intent intent = new Intent(getApplicationContext(), ForgetPasswordActivity.class);
                 startActivity(intent);
+
+                //can't back to this activity anymore
                 finish();
             }
         });
 
+        //set the remove account button onClick
         binding.profileRmvAccountTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,10 +159,17 @@ public class UserProfileActivity extends AppCompatActivity {
                 //setting Positive button for applying the account remove
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        // remove the user from database
                         userDB.userDao().deleteUser(us);
+
+                        //navigate to the login activity
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+
+                        //delete the history of app (can't go back to any previous activity)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
+
+                        //can't go back to this activity
                         finish();
                     }
                 });

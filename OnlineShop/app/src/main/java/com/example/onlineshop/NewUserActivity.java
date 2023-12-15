@@ -46,7 +46,7 @@ public class NewUserActivity extends AppCompatActivity {
         binding = ActivityNewUserBinding.inflate(LayoutInflater.from(NewUserActivity.this));
         setContentView(binding.getRoot());
 
-        //get the passed value from the above activity
+        //get the passed values from the previous activity
         Intent intent = getIntent();
         String user = intent.getStringExtra("user");
         String pass = intent.getStringExtra("pass");
@@ -130,25 +130,31 @@ public class NewUserActivity extends AppCompatActivity {
             }
         });
 
+        //set the next button onClick
         binding.nextBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //if nothing is selected from the spinner
                 if(selectedItem == null)
                 {
                     Toast.makeText(NewUserActivity.this, "Please Enter A Category", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
+                    //check if the ssn field is empty
                     if(binding.newUserSsnET.equals(""))
                     {
                         Toast.makeText(NewUserActivity.this, "Please Enter Right Data", Toast.LENGTH_SHORT).show();
                     }
+
                     //converting the birthdate from datePicker to string
                     String day = Integer.toString(binding.datePicker.getDayOfMonth());
                     String month = Integer.toString(binding.datePicker.getMonth() + 1);
                     String year = Integer.toString(binding.datePicker.getYear());
                     String date = day + " / " + month + " / " + year;
 
+                    //creating new user and initialize it with the data
                     UserModel us = new UserModel();
                     us.cartItems = new ArrayList<>();
                     us.email = email;
@@ -164,12 +170,19 @@ public class NewUserActivity extends AppCompatActivity {
                     card.id = Integer.parseInt(binding.creditCardET.getText().toString());
                     card.credit = 2000;
                     us.card = card;
+
+                    //insert the new user to the database
                     userDB.userDao().insertUser(us);
 
+                    //navigate to the products activity
                     Intent intent = new Intent(getApplicationContext(),ProductsActivity.class);
+
+                    //pass values to the next activity
                     intent.putExtra("category", selectedItem);
                     intent.putExtra("user", user);
                     startActivity(intent);
+
+                    //cant go back to this activity any more
                     finish();
                 }
             }

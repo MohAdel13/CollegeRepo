@@ -28,6 +28,7 @@ public class OrderSubmitActivity extends AppCompatActivity {
     ProductDB productDB;
     OrderDB orderDB;
     float totalPrice;
+    float totalSale = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,42 +75,54 @@ public class OrderSubmitActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                OrderModel order = new OrderModel();
-                order.username = user;
-                order.state = 0;
-                order.totalPrice = totalPrice;
-                order.products = new ArrayList<>();
-                order.countOfEachProduct = new ArrayList<>();
-
-                //updating the database of products by decreasing the sold amount from the database
-                for(int i=0; i<us.cartItems.size();i++)
+                boolean flag = true;
+                if(binding.visaRB.isChecked())
                 {
-                    productDB.productDao().setCount(us.cartItems.get(i).product.title, us.cartItems.get(i).count);
-
-                    order.products.add(us.cartItems.get(i).product);
-                    order.countOfEachProduct.add(us.cartItems.get(i).count);
+                    if(us.card.credit < totalPrice +1)
+                    {
+                        flag = false;
+                    }
                 }
+                if(flag) {
+                    OrderModel order = new OrderModel();
+                    order.username = user;
+                    order.state = 0;
+                    order.totalPrice = totalPrice;
+                    order.products = new ArrayList<>();
+                    order.countOfEachProduct = new ArrayList<>();
 
-                orderDB.orderDao().insertOrder(order);
-                us.orders.add(order);
+                    //updating the database of products by decreasing the sold amount from the database
+                    for (int i = 0; i < us.cartItems.size(); i++) {
+                        productDB.productDao().setCount(us.cartItems.get(i).product.title, us.cartItems.get(i).count);
 
-                //clearing the user cart in database
-                us.productsNames.clear();
-                us.cartItems.clear();
-                userDB.userDao().updateCart(us);
+                        order.products.add(us.cartItems.get(i).product);
+                        order.countOfEachProduct.add(us.cartItems.get(i).count);
+                    }
 
-                Toast.makeText(OrderSubmitActivity.this, "Order Submitted Successfully..", Toast.LENGTH_SHORT).show();
+                    orderDB.orderDao().insertOrder(order);
+                    us.orders.add(order);
 
-                Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
-                intent.putExtra("user", user);
-                intent.putExtra("category", us.favCategory);
+                    //clearing the user cart in database
+                    us.productsNames.clear();
+                    us.cartItems.clear();
+                    userDB.userDao().updateCart(us);
 
-                //the below line makes the back activity cleared
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                    Toast.makeText(OrderSubmitActivity.this, "Order Submitted Successfully..", Toast.LENGTH_SHORT).show();
 
-                //the below line clears this activity
-                finish();
+                    Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
+                    intent.putExtra("user", user);
+                    intent.putExtra("category", us.favCategory);
+
+                    //the below line makes the back activity cleared
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+
+                    //the below line clears this activity
+                    finish();
+                }
+                else{
+                    Toast.makeText(OrderSubmitActivity.this, "Sorry not Enough Credit..", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -156,9 +169,10 @@ public class OrderSubmitActivity extends AppCompatActivity {
             for(int i=0; i<cart.size();i++)
             {
                 price += cart.get(i).product.price * cart.get(i).count;
+                totalSale += cart.get(i).product.sale * cart.get(i).count;
             }
 
-            totalPrice = price;
+            totalPrice = price - totalSale;
             return price;
         }
 
@@ -169,7 +183,8 @@ public class OrderSubmitActivity extends AppCompatActivity {
             //writing the prices in textViews
             binding.orderTotalPriceTV.setText("USD " + Float.toString(price));
             binding.DeliveryPriceTV.setText("USD 1.0");
-            binding.totalPriceTV.setText("USD "+ Float.toString(price+1));
+            binding.totalPriceTV.setText("USD "+ Float.toString(totalPrice+1));
+            binding.saleTV.setText("USD "+ Float.toString(totalSale));
         }
     }
 }

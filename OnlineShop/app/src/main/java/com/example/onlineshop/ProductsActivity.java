@@ -21,6 +21,8 @@ import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.onlineshop.Adapters.ProductSearchAdapter;
+import com.example.onlineshop.Adapters.ProductsAdapter;
 import com.example.onlineshop.databinding.ActivityProductsBinding;
 import com.example.onlineshop.pojo.RoomDataBases.CategoryDB;
 import com.example.onlineshop.pojo.Models.CategoryModel;
@@ -136,6 +138,8 @@ public class ProductsActivity extends AppCompatActivity {
                     for (int i = 0; i < prod.size(); i++) {
                         Random random = new Random();
                         prod.get(i).count = random.nextInt(50) + 1;
+                        prod.get(i).sale = 0;
+                        prod.get(i).feedbacks = new ArrayList<>();
                         productDB.productDao().insertProduct(prod.get(i));
                     }
                     //Toast.makeText(ProductsActivity.this, "done.", Toast.LENGTH_SHORT).show();

@@ -59,5 +59,14 @@ public class AdminShowProductActivity extends AppCompatActivity {
             }
         });
 
+        binding.productFeedbackTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FeedbacksActivity.class);
+                intent.putExtra("product", product);
+                startActivity(intent);
+            }
+        });
+
     }
 }

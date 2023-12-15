@@ -112,8 +112,10 @@
                 android:text="@string/delivery"
                 app:layout_constraintBottom_toBottomOf="@+id/deliveryTV"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/orderTotalPriceTV"
-                app:layout_constraintTop_toTopOf="@+id/deliveryTV" />
+                app:layout_constraintTop_toTopOf="@+id/deliveryTV"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/totalToPayTV"
@@ -125,7 +127,7 @@
                 android:textColor="@color/orangeSecondary"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/deliveryTV"
-                app:layout_constraintTop_toBottomOf="@+id/DeliveryPriceTV"
+                app:layout_constraintTop_toBottomOf="@+id/saleTV"
                 tools:ignore="TextContrastCheck" />
 
             <TextView
@@ -140,6 +142,26 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/totalToPayTV"
+                app:layout_constraintTop_toBottomOf="@+id/saleTV" />
+
+            <TextView
+                android:id="@+id/salePriceLabelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/sale"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deliveryTV" />
+
+            <TextView
+                android:id="@+id/saleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/sale"
+                app:layout_constraintEnd_toEndOf="@+id/DeliveryPriceTV"
+                app:layout_constraintStart_toStartOf="@+id/DeliveryPriceTV"
                 app:layout_constraintTop_toBottomOf="@+id/DeliveryPriceTV" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
