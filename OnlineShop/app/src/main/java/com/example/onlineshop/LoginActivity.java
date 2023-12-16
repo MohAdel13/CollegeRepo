@@ -4,17 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityLoginBinding;
-import com.example.onlineshop.pojo.DesignPatterns.AdminLoginFactory;
 import com.example.onlineshop.pojo.DesignPatterns.Login;
 import com.example.onlineshop.pojo.DesignPatterns.LoginFactory;
-import com.example.onlineshop.pojo.RoomDataBases.UserDB;
 import com.example.onlineshop.pojo.DesignPatterns.UserLogin;
-import com.example.onlineshop.pojo.DesignPatterns.UserLoginFactory;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
 import com.example.onlineshop.pojo.Models.UserModel;
 
 import java.util.List;
@@ -70,12 +69,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     else
                     {
-                        //determine is it user or admin login using factory design pattern
-                        LoginFactory loginFactory = determineLoginFactory(user);
-                        Login login = loginFactory.createLogin();
-
-                        //authenticate the login using proxy design pattern
-                        boolean found = login.authenticate(LoginActivity.this, user, pass);
+                        //performing factory design pattern for authentication even for user or admin
+                        LoginFactory loginFactory = new LoginFactory();
+                        Login login = loginFactory.determineLoginFactory(user);
+                        boolean found = login.Authenticate(user, pass, getApplicationContext());
 
                         //if the authentication succeeded
                         if (found)
@@ -90,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                                 /*---------------DC-----------------*/
-                                UserModel us = ((UserLogin)login).getUserModel();
+                                UserModel us = ((UserLogin)login).getUser();
                                 Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
                                 intent.putExtra("category", us.favCategory);
                                 intent.putExtra("user", us.username);
@@ -121,17 +118,6 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }
             });
-        }
-    }
-
-    private LoginFactory determineLoginFactory(String username)
-    {
-        if(username.equals("admin")){
-            return new AdminLoginFactory();
-        }
-
-        else {
-            return new UserLoginFactory();
         }
     }
 }

@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.onlineshop.databinding.ActivityOrderSubmitBinding;
+import com.example.onlineshop.pojo.DesignPatterns.AccessControlProxy;
 import com.example.onlineshop.pojo.Models.CartProductModel;
 import com.example.onlineshop.pojo.Models.OrderModel;
 import com.example.onlineshop.pojo.RoomDataBases.OrderDB;
@@ -75,10 +76,11 @@ public class OrderSubmitActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                AccessControlProxy proxy = new AccessControlProxy(us.card);
                 boolean flag = true;
                 if(binding.visaRB.isChecked())
                 {
-                    if(us.card.credit < totalPrice +1)
+                    if(!proxy.validateTransaction(totalPrice + 1))
                     {
                         flag = false;
                     }

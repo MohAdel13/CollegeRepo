@@ -3,6 +3,6 @@ package com.example.onlineshop.pojo.DesignPatterns;
 import android.content.Context;
 
 public interface Login {
-    boolean authenticate(Context context, String username, String password);
+    boolean Authenticate(String user, String pass, Context context);
     String getType();
 }

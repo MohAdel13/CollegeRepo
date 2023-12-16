@@ -3,14 +3,23 @@ package com.example.onlineshop.pojo.DesignPatterns;
 import android.content.Context;
 
 import com.example.onlineshop.pojo.Models.UserModel;
+import com.example.onlineshop.pojo.RoomDataBases.UserDB;
+
+import java.util.List;
 
 public class UserLogin implements Login{
-    private UserModel user;
+    private UserModel us;
     @Override
-    public boolean authenticate(Context context, String username, String password) {
-        AuthenticationService authenticationService = new AuthenticationService(context);
-        user = authenticationService.authenticate(username, password);
-        return user != null;
+    public boolean Authenticate(String user, String pass, Context context) {
+        UserDB userDB = UserDB.getInstance(context);
+
+        List<UserModel> userGot = userDB.userDao().getUser(user, pass);
+        if(!userGot.isEmpty())
+        {
+            us = userGot.get(0);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -18,8 +27,8 @@ public class UserLogin implements Login{
         return "user";
     }
 
-    public UserModel getUserModel()
+    public UserModel getUser()
     {
-        return user;
+        return us;
     }
 }

@@ -4,8 +4,8 @@ import android.content.Context;
 
 public class AdminLogin implements Login{
     @Override
-    public boolean authenticate(Context context, String username, String password) {
-        return (username.equals("admin") && password.equals("admin"));
+    public boolean Authenticate(String user, String pass, Context context) {
+        return (pass.equals("admin") && user.equals("admin"));
     }
 
     @Override
