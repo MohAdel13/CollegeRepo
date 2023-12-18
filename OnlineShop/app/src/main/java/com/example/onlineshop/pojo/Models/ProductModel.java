@@ -28,6 +28,9 @@ public class ProductModel {
     public int count;
 
     public float sale;
+
     @TypeConverters(FeedbackListConverter.class)
     public List<FeedbackModel> feedbacks;
+
+    public int soldCount;
 }

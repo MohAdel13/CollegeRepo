@@ -25,6 +25,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
     @NonNull
     @Override
     public FeedbackAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //link the view holder to the layout
         FeedbackItemBinding binding = FeedbackItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new FeedbackAdapter.ViewHolder(binding);
     }
@@ -32,8 +33,11 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull FeedbackAdapter.ViewHolder holder, int position) {
         FeedbackItemBinding binding = holder.holderBinding;
+
+        //write the data on views of feedback item
         binding.feedbackMsgTV.setText(feedbacks.get(position).message);
 
+        //make the rating stars as the count of rating
         binding.feedbackRate1StarBTN.setImageDrawable(context.getDrawable(R.drawable.baseline_star_rate_26));
 
         if(feedbacks.get(position).rating > 1)

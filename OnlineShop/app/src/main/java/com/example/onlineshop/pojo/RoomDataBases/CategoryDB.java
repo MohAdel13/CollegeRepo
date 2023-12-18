@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.onlineshop.pojo.Models.CategoryModel;
 
-@Database(entities = CategoryModel.class,version = 5,exportSchema = false)
+@Database(entities = CategoryModel.class,version = 6,exportSchema = false)
 public abstract class CategoryDB extends RoomDatabase {
     private static CategoryDB INSTANCE;
     public abstract CategoryDao categoryDao();

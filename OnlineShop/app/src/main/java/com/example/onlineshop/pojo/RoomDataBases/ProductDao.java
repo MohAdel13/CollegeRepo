@@ -39,4 +39,10 @@ public interface ProductDao {
 
     @Update
     void updateRate(ProductModel product);
+
+    @Query("UPDATE PRODUCT_TABLE SET soldCount = soldCount +:newCount WHERE title = :title")
+    void incrementSold(int newCount, String title);
+
+    @Query("SELECT * FROM PRODUCT_TABLE ORDER BY soldCount DESC LIMIT 10")
+    List<ProductModel> getTopProducts();
 }

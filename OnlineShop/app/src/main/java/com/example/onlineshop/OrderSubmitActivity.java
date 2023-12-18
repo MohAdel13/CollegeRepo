@@ -43,7 +43,7 @@ public class OrderSubmitActivity extends AppCompatActivity {
         userDB = UserDB.getInstance(getApplicationContext());
         orderDB = OrderDB.getInstance(getApplicationContext());
 
-        //get the passed value from the above activity
+        //get the passed value from the previous activity
         Intent intent = getIntent();
         String user = intent.getStringExtra("user");
 
@@ -54,11 +54,15 @@ public class OrderSubmitActivity extends AppCompatActivity {
         new getPrice().execute();
 
 
-        //setting the checkout btn
+        //setting the back button onClick
         binding.checkoutBackBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Navigate to the cart activity
                 Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+
+                //pass a value with the username to the new activity
                 intent.putExtra("user", user);
 
                 //the below line makes the back activity cleared
@@ -71,11 +75,12 @@ public class OrderSubmitActivity extends AppCompatActivity {
         });
 
 
-        //setting the submit button
+        //setting the submit button onClick
         binding.orderSubmitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                //proxy design pattern lines to check if the credit card has enough money for the order
                 AccessControlProxy proxy = new AccessControlProxy(us.card);
                 boolean flag = true;
                 if(binding.visaRB.isChecked())
@@ -86,6 +91,8 @@ public class OrderSubmitActivity extends AppCompatActivity {
                     }
                 }
                 if(flag) {
+
+                    //initializing a new order with the content of the order
                     OrderModel order = new OrderModel();
                     order.username = user;
                     order.state = 0;
@@ -93,15 +100,24 @@ public class OrderSubmitActivity extends AppCompatActivity {
                     order.products = new ArrayList<>();
                     order.countOfEachProduct = new ArrayList<>();
 
-                    //updating the database of products by decreasing the sold amount from the database
                     for (int i = 0; i < us.cartItems.size(); i++) {
+                        //updating the database of products by decreasing the count of the product
                         productDB.productDao().setCount(us.cartItems.get(i).product.title, us.cartItems.get(i).count);
 
+                        //add the products to the the order
                         order.products.add(us.cartItems.get(i).product);
+
+                        //add the count of each product to the order
                         order.countOfEachProduct.add(us.cartItems.get(i).count);
+
+                        //increase the sold amount of each product in database
+                        productDB.productDao().incrementSold(us.cartItems.get(i).count, us.cartItems.get(i).product.title);
                     }
 
+                    //add the order to the database of orders
                     orderDB.orderDao().insertOrder(order);
+
+                    //add the order to the database of the user
                     us.orders.add(order);
 
                     //clearing the user cart in database
@@ -109,9 +125,13 @@ public class OrderSubmitActivity extends AppCompatActivity {
                     us.cartItems.clear();
                     userDB.userDao().updateCart(us);
 
+                    //inform the user that the order is submitted
                     Toast.makeText(OrderSubmitActivity.this, "Order Submitted Successfully..", Toast.LENGTH_SHORT).show();
 
+                    //navigate to the products activity
                     Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
+
+                    //pass values to the new activity with the username and his favourite category
                     intent.putExtra("user", user);
                     intent.putExtra("category", us.favCategory);
 
@@ -123,6 +143,7 @@ public class OrderSubmitActivity extends AppCompatActivity {
                     finish();
                 }
                 else{
+                    //if the check of proxy design pattern is false
                     Toast.makeText(OrderSubmitActivity.this, "Sorry not Enough Credit..", Toast.LENGTH_SHORT).show();
                 }
             }

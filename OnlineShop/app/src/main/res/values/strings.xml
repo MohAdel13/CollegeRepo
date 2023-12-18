@@ -77,4 +77,7 @@
     <string name="products3">Products</string>
     <string name="price2">Price</string>
     <string name="feedbackmessage">FeedbackMessage</string>
+    <string name="best_sold_products">Best Sold Products</string>
+    <string name="best_sell_chart">Best Sell Chart</string>
+    <string name="best_sell">Best Sell</string>
 </resources>

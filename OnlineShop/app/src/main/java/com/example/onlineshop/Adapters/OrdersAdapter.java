@@ -34,6 +34,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ordersHold
         userDB = UserDB.getInstance(context);
         orderDB = OrderDB.getInstance(context);
 
+        //get the user by its username from database
         us = userDB.userDao().checkUser(user).get(0);
     }
 
@@ -49,7 +50,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ordersHold
     public void onBindViewHolder(@NonNull OrdersAdapter.ordersHolder holder, int position) {
         OrderItemLayoutBinding binding = holder.holderBinding;
 
+        //show the total price of the order
         binding.orderPriceTV.setText(Float.toString(orders.get(position).totalPrice));
+
+        //show products info of the order
         String info = "";
         for (int i=0;i<orders.get(position).products.size();i++)
         {
@@ -75,9 +79,12 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ordersHold
             super(binding.getRoot());
             this.holderBinding = binding;
 
+            //setting the cancel button onClick
             binding.cancelTV.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    //remove the order from database of orders and of user and notify the adapter
                     us.orders.remove(getAdapterPosition());
                     userDB.userDao().updateCart(us);
                     orderDB.orderDao().deleteOrder(orders.get(getAdapterPosition()));

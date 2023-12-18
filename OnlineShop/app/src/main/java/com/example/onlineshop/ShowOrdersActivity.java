@@ -27,19 +27,27 @@ public class ShowOrdersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //linking the activity to its layout
         binding = ActivityShowOrdersBinding.inflate(LayoutInflater.from(ShowOrdersActivity.this));
         setContentView(binding.getRoot());
 
+        //get the passed value from the previous activity
         Intent intent = getIntent();
         user = intent.getStringExtra("user");
 
+        //get instance from user database
         userDB = UserDB.getInstance(getApplicationContext());
+
+        //get user by its username from the database
         us = userDB.userDao().checkUser(user).get(0);
 
-        orders = us.orders;
+        //creating an adapter for recyclerView
         adapter = new OrdersAdapter(user, getApplicationContext());
 
-        adapter.setOrders(orders);
+        //pass the user orders as list of data for the adapter
+        adapter.setOrders(us.orders);
+
+        //link the adapter and the recyclerView
         binding.userOrderRV.setAdapter(adapter);
     }
 }

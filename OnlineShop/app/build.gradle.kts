@@ -18,6 +18,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 
     buildTypes {
@@ -71,5 +72,5 @@ dependencies {
     implementation ("com.google.zxing:core:3.4.1")
 
     //For BarChart
-    implementation ("com.diogobernardino:williamchart:3.10.1")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

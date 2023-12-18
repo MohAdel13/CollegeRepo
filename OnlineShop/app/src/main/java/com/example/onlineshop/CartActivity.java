@@ -40,7 +40,7 @@ public class CartActivity extends AppCompatActivity {
         cart = us.cartItems;
 
         //making an adapter for the recyclerView
-        CartAdapter adapter = new CartAdapter(user, getApplicationContext());
+        CartAdapter adapter = new  CartAdapter(user, getApplicationContext());
 
         //adding the cart to the adapter
         adapter.setCart(cart);
